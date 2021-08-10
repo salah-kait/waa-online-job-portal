@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.CertificateRepository;
+import com.MIU.OnlineJob.Repositories.CertificateRepository;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Certificate;
 import org.springframework.beans.factory.annotation.Autowired;

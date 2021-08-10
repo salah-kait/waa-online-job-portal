@@ -1,7 +1,7 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.JobSeekerRepository;
-import com.MIU.OnlineJob.DataAccess.SkillRepository;
+import com.MIU.OnlineJob.Repositories.JobSeekerRepository;
+import com.MIU.OnlineJob.Repositories.SkillRepository;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Skill;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,10 +1,8 @@
 package com.MIU.OnlineJob.Controllers;
 
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
-import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.JobSeeker;
-import com.MIU.OnlineJob.Payload.UpdateCompanyRequest;
-import com.MIU.OnlineJob.Payload.UpdateJobseekerRequest;
+import com.MIU.OnlineJob.Payload.Requests.UpdateJobseekerRequest;
 import com.MIU.OnlineJob.Services.JobSeekerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/job_seekers")
+@RequestMapping("/api/job-seeker")
 public class JobSeekerController {
 
 	private JobSeekerService jobSeekerService;
@@ -55,6 +53,7 @@ public class JobSeekerController {
 
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('JOBSEEKER')")
 	void deleteJobSeeker(@PathVariable Long id) {
 		this.jobSeekerService.delete(id);
 	}

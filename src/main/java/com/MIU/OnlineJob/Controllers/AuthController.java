@@ -7,12 +7,12 @@ import com.MIU.OnlineJob.Models.JobSeeker;
 import com.MIU.OnlineJob.Models.Role;
 import com.MIU.OnlineJob.Models.enums.RoleName;
 import com.MIU.OnlineJob.Models.User;
-import com.MIU.OnlineJob.Payload.ApiResponse;
-import com.MIU.OnlineJob.Payload.JwtAuthenticationResponse;
-import com.MIU.OnlineJob.Payload.LoginRequest;
-import com.MIU.OnlineJob.Payload.SignUpRequest;
-import com.MIU.OnlineJob.DataAccess.RoleRepository;
-import com.MIU.OnlineJob.DataAccess.UserRepository;
+import com.MIU.OnlineJob.Payload.Response.ApiResponse;
+import com.MIU.OnlineJob.Payload.Response.JwtAuthenticationResponse;
+import com.MIU.OnlineJob.Payload.Requests.LoginRequest;
+import com.MIU.OnlineJob.Payload.Requests.SignUpRequest;
+import com.MIU.OnlineJob.Repositories.RoleRepository;
+import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Security.JwtTokenProvider;
 import com.MIU.OnlineJob.Services.CompanyService;
 import com.MIU.OnlineJob.Services.JobSeekerService;
@@ -99,6 +99,8 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         RoleName userRoleName = Objects.equals(signUpRequest.getRole(), "company") ?RoleName.ROLE_COMPANY:RoleName.ROLE_JOBSEEKER;
+        System.out.println("==========");
+        System.out.println(userRoleName);
         Role userRole = roleRepository.findByName(userRoleName)
                 .orElseThrow(() -> new AppException("User Role not set."+signUpRequest.getRole()));
 

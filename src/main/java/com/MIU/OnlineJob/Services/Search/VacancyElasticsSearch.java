@@ -1,7 +1,7 @@
 package com.MIU.OnlineJob.Services.Search;
 
 import com.MIU.OnlineJob.Models.Vacancy;
-import com.MIU.OnlineJob.Payload.SearchResult;
+import com.MIU.OnlineJob.Payload.Requests.SearchResult;
 import org.springframework.stereotype.Service;
 
 

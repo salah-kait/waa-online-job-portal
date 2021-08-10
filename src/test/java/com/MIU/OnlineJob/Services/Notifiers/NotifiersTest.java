@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import com.MIU.OnlineJob.DataAccess.UserRepository;
+import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Factories.Enums.NotificationType;
 import com.MIU.OnlineJob.Models.SystemNotification;
 import com.MIU.OnlineJob.Models.User;

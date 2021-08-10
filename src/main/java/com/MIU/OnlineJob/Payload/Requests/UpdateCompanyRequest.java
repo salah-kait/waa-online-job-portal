@@ -1,23 +1,25 @@
-package com.MIU.OnlineJob.Payload;
-
+package com.MIU.OnlineJob.Payload.Requests;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class CompanyRequestModel{
+public class UpdateCompanyRequest {
+
     @NotBlank
     @Size(min = 4, max = 40)
     private String street;
+
     @NotBlank
-    @Size(min = 4, max = 40)
+    @Size(min = 2, max = 40)
     private String city;
+
     @NotBlank
-    @Size(min = 4, max = 40)
+    @Size(min = 2, max = 40)
     private String state;
-    @NotBlank
-    @Size(min = 4, max = 10)
+
     private Long zipcode;
+
 
     public String getStreet() {
         return street;
@@ -50,4 +52,9 @@ public class CompanyRequestModel{
     public void setZipcode(Long zipcode) {
         this.zipcode = zipcode;
     }
+
+
+
+
+
 }

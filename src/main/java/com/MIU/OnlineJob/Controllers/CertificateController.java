@@ -3,7 +3,7 @@ package com.MIU.OnlineJob.Controllers;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Certificate;
 import com.MIU.OnlineJob.Models.JobSeeker;
-import com.MIU.OnlineJob.Payload.ApiResponse;
+import com.MIU.OnlineJob.Payload.Response.ApiResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.CertificateService;

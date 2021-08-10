@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Vacancy;
-import com.MIU.OnlineJob.Payload.SearchResult;
-import com.MIU.OnlineJob.Services.Search.SearchServiceFactory;
+import com.MIU.OnlineJob.Payload.Requests.SearchResult;
 import com.MIU.OnlineJob.Services.Search.SearchService;
 import com.MIU.OnlineJob.Services.Search.Enums.SearchType;
 

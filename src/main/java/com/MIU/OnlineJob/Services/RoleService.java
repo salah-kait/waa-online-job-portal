@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.RoleRepository;
+import com.MIU.OnlineJob.Repositories.RoleRepository;
 import com.MIU.OnlineJob.Exception.AppException;
 import com.MIU.OnlineJob.Models.Role;
 import com.MIU.OnlineJob.Models.enums.RoleName;

@@ -1,7 +1,7 @@
 package com.MIU.OnlineJob.Services;
 
 
-import com.MIU.OnlineJob.DataAccess.UserRepository;
+import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Models.User;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

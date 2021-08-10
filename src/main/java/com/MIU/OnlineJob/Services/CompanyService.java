@@ -1,9 +1,8 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.CompanyRepository;
+import com.MIU.OnlineJob.Repositories.CompanyRepository;
 import com.MIU.OnlineJob.Exception.AppException;
 import com.MIU.OnlineJob.Models.Company;
-import com.MIU.OnlineJob.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

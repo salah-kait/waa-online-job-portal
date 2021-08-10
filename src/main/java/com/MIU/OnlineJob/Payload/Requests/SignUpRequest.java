@@ -1,11 +1,9 @@
-package com.MIU.OnlineJob.Payload;
+package com.MIU.OnlineJob.Payload.Requests;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import com.MIU.OnlineJob.Models.enums.RoleName;
 
-public class CreateUserRequest {
+import javax.validation.constraints.*;
+public class SignUpRequest {
     @NotBlank
     @Size(min = 4, max = 40)
     private String name;
@@ -22,6 +20,10 @@ public class CreateUserRequest {
     @NotBlank
     @Size(min = 2, max = 20)
     private String password;
+
+    @NotBlank
+    @Pattern(regexp = "company|jobseeker", flags = Pattern.Flag.CASE_INSENSITIVE)
+    private String role;
 
     public String getName() {
         return name;
@@ -55,4 +57,11 @@ public class CreateUserRequest {
         this.password = password;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
 }

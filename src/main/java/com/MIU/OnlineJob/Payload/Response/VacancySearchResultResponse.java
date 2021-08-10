@@ -1,10 +1,11 @@
-package com.MIU.OnlineJob.Payload;
+package com.MIU.OnlineJob.Payload.Response;
 
 import java.util.List;
 
 import com.MIU.OnlineJob.Models.Vacancy;
+import com.MIU.OnlineJob.Payload.Requests.SearchResult;
 
-public class VacancySearchResult implements SearchResult<Vacancy> {
+public class VacancySearchResultResponse implements SearchResult<Vacancy> {
 
 	private List<Vacancy> result;
 	private int totalCount;

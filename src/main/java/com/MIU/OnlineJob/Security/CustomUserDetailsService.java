@@ -2,7 +2,7 @@ package com.MIU.OnlineJob.Security;
 
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.User;
-import com.MIU.OnlineJob.DataAccess.UserRepository;
+import com.MIU.OnlineJob.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

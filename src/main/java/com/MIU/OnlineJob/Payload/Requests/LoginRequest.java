@@ -1,4 +1,4 @@
-package com.MIU.OnlineJob.Payload;
+package com.MIU.OnlineJob.Payload.Requests;
 
 import javax.validation.constraints.NotBlank;
 

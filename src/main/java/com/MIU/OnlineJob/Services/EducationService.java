@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.EducationRepository;
+import com.MIU.OnlineJob.Repositories.EducationRepository;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Education;
 import org.springframework.beans.factory.annotation.Autowired;

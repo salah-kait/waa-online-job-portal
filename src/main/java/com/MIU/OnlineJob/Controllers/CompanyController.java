@@ -1,9 +1,9 @@
 package com.MIU.OnlineJob.Controllers;
 
 import com.MIU.OnlineJob.Models.Company;
-import com.MIU.OnlineJob.Payload.CompanyResponse;
-import com.MIU.OnlineJob.Payload.CompanyRequestModel;
-import com.MIU.OnlineJob.Payload.UpdateCompanyRequest;
+import com.MIU.OnlineJob.Payload.Response.CompanyResponse;
+import com.MIU.OnlineJob.Payload.Requests.CompanyRequestModel;
+import com.MIU.OnlineJob.Payload.Requests.UpdateCompanyRequest;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.CompanyService;

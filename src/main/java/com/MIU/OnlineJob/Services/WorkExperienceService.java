@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.WorkExperienceRepository;
+import com.MIU.OnlineJob.Repositories.WorkExperienceRepository;
 import com.MIU.OnlineJob.Models.WorkExperience;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,10 @@ public class WorkExperienceService {
 
     public List<WorkExperience> findAll() {
         return _WorkExperienceRepository.findAll();
+    }
+
+    public List<WorkExperience> findAllByUserId(Long userId) {
+        return _WorkExperienceRepository.findAllByUserId(userId);
     }
 
     public WorkExperience findById(long id) throws NotFoundException {

@@ -3,7 +3,7 @@ package com.MIU.OnlineJob.Controllers;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.JobSeeker;
 import com.MIU.OnlineJob.Models.Skill;
-import com.MIU.OnlineJob.Payload.ApiResponse;
+import com.MIU.OnlineJob.Payload.Response.ApiResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.JobSeekerService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/skills")
+@RequestMapping("api/skill")
 @PreAuthorize("hasRole('JOBSEEKER')")
 public class SkillController {
 
@@ -35,7 +35,7 @@ public class SkillController {
         return this.skillService.findAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     Skill newSkill(@RequestBody Skill newSkill,@CurrentUser UserPrincipal currentUser) {
 
         JobSeeker js = jobSeekerService.findByUserId(currentUser.getId());

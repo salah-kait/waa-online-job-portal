@@ -4,7 +4,7 @@ package com.MIU.OnlineJob.Controllers;
 import com.MIU.OnlineJob.Exception.AppException;
 import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.Vacancy;
-import com.MIU.OnlineJob.Payload.VacancyRequest;
+import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.CompanyService;
@@ -20,21 +20,18 @@ import java.util.List;
 @RequestMapping("/api/vacancy")
 public class VacancyController {
 
-    private final VacancyService vacancyService;
-    private final CompanyService companyService;
-
     @Autowired
-    public VacancyController(VacancyService vacancyService, CompanyService companyService, UserService userService) {
-        this.vacancyService = vacancyService;
-        this.companyService = companyService;
-    }
+    private  VacancyService vacancyService;
+    @Autowired
+    private  CompanyService companyService;
 
     @GetMapping("/{id}")
     public Vacancy getVacancy(@PathVariable Long id){
         return vacancyService.getVacancy(id);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
+    @PreAuthorize("hasRole('COMPANY')")
     public List<Vacancy> getVacancies(){
         return vacancyService.getAllVacancies();
     }

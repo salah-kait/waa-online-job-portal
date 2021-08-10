@@ -3,7 +3,7 @@ package com.MIU.OnlineJob.Services.Notifiers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.MIU.OnlineJob.DataAccess.SystemNotificationRepository;
+import com.MIU.OnlineJob.Repositories.SystemNotificationRepository;
 import com.MIU.OnlineJob.Models.SystemNotification;
 import com.MIU.OnlineJob.Models.User;
 

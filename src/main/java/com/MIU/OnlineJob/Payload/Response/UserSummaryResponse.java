@@ -1,4 +1,4 @@
-package com.MIU.OnlineJob.Payload;
+package com.MIU.OnlineJob.Payload.Response;
 
 public class UserSummaryResponse {
     private Long id;

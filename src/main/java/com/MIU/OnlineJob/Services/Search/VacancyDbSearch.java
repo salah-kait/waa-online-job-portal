@@ -1,11 +1,11 @@
 package com.MIU.OnlineJob.Services.Search;
 
-import com.MIU.OnlineJob.DataAccess.VacancyRepository;
+import com.MIU.OnlineJob.Repositories.VacancyRepository;
 import com.MIU.OnlineJob.Models.Vacancy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.MIU.OnlineJob.Payload.SearchResult;
+import com.MIU.OnlineJob.Payload.Requests.SearchResult;
 
 import java.util.List;
 

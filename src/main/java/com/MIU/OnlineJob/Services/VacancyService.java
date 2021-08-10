@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services;
 
-import com.MIU.OnlineJob.DataAccess.VacancyRepository;
+import com.MIU.OnlineJob.Repositories.VacancyRepository;
 import com.MIU.OnlineJob.Exception.AppException;
 import com.MIU.OnlineJob.Models.Vacancy;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,7 @@
 package com.MIU.OnlineJob.User;
 
 
-import com.MIU.OnlineJob.DataAccess.RoleRepository;
-import com.MIU.OnlineJob.DataAccess.UserRepository;
+import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Models.Role;
 import com.MIU.OnlineJob.Models.User;
 import com.MIU.OnlineJob.Models.enums.RoleName;

@@ -3,7 +3,7 @@ package com.MIU.OnlineJob.Controllers;
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.JobSeeker;
 import com.MIU.OnlineJob.Models.WorkExperience;
-import com.MIU.OnlineJob.Payload.ApiResponse;
+import com.MIU.OnlineJob.Payload.Response.ApiResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.JobSeekerService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/work_experiences")
+@RequestMapping("api/work-experince")
 @PreAuthorize("hasRole('JOBSEEKER')")
 public class WorkExperienceController {
 
@@ -31,11 +31,11 @@ public class WorkExperienceController {
     }
 
     @GetMapping("/")
-    List<WorkExperience> all() {
+    List<WorkExperience> all(@CurrentUser UserPrincipal currentUser) {
         return this.workExperienceService.findAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     WorkExperience newWorkExperience(@RequestBody WorkExperience newWorkExperience, @CurrentUser UserPrincipal currentUser) {
         JobSeeker jobSeeker = jobSeekerService.findByUserId(currentUser.getId());
         newWorkExperience.setJobSeeker(jobSeeker);

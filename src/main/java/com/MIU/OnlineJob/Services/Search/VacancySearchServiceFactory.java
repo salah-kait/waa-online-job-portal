@@ -1,6 +1,6 @@
 package com.MIU.OnlineJob.Services.Search;
 
-import com.MIU.OnlineJob.DataAccess.VacancyRepository;
+import com.MIU.OnlineJob.Repositories.VacancyRepository;
 import com.MIU.OnlineJob.Models.Vacancy;
 import com.MIU.OnlineJob.Services.Search.Enums.SearchType;
 import org.springframework.beans.factory.annotation.Autowired;

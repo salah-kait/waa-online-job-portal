@@ -1,4 +1,4 @@
-package com.MIU.OnlineJob.DataAccess;
+package com.MIU.OnlineJob.Repositories;
 
 import com.MIU.OnlineJob.Models.Education;
 import org.springframework.data.jpa.repository.JpaRepository;

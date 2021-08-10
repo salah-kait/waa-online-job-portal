@@ -1,4 +1,4 @@
-package com.MIU.OnlineJob.Payload;
+package com.MIU.OnlineJob.Payload.Requests;
 
 import java.time.LocalDate;
 import java.util.Date;
