@@ -18,6 +18,8 @@ public class Vacancy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private String location;
+    @Lob
     private String jobDescription;
     private LocalDate postFromDate;
     private LocalDate postToDate;

@@ -2,7 +2,9 @@ package com.MIU.OnlineJob.Controllers;
 
 
 import com.MIU.OnlineJob.Exception.AppException;
+import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Company;
+import com.MIU.OnlineJob.Models.Skill;
 import com.MIU.OnlineJob.Models.Vacancy;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
 import com.MIU.OnlineJob.Security.CurrentUser;
@@ -51,6 +53,7 @@ public class VacancyController {
         vacancy.setTitle(vacancyRequest.getTitle());
         vacancy.setSalaryRangFrom(vacancyRequest.getSalaryRangFrom());
         vacancy.setSalaryRangTo(vacancyRequest.getSalaryRangTo());
+        vacancy.setLocation(vacancyRequest.getLocation());
 
         //Company company = this.companyService.findById(vacancyRequest.getCompanyId().longValue());
 
@@ -58,6 +61,19 @@ public class VacancyController {
 
         return vacancyService.save(vacancy);
     }
+
+
+    @PutMapping("/{id}")
+   // @PreAuthorize("hasRole('COMPANY')")
+    public Vacancy updateVacancy(@PathVariable Long id,@RequestBody VacancyRequest vacancyRequest, @CurrentUser UserPrincipal currentUser){
+
+        Company company = this.companyService.findByUser(currentUser.getId());
+        if (company == null){
+            throw new AppException("Cannot post vaccancy against");
+        }
+        return vacancyService.update(vacancyRequest,id);
+    }
+
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('COMPANY')")
