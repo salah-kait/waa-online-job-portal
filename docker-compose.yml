@@ -1,0 +1,54 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: OnlineJobDb
+    restart: always
+    environment: 
+    - POSTGRES_PASSWORD=123
+    - POSTGRES_USER=postgres
+    - POSTGRES_DB=jobfinder
+    ports:
+    - 5432:5432
+    hostname: db.onlinejob.com 
+    healthcheck:
+      test: exit 0
+  online-job-services-node-1:
+    build:
+      context: .
+      dockerfile: Node1.Dockerfile
+    container_name: JobFinderApiNode1
+    image: job-finder-api-image-node-1
+    depends_on:
+    - postgres
+    hostname: api.onlinejob.com
+    restart: always
+    ports:
+    - 5001:5001
+    healthcheck:
+      test: exit 0
+  online-job-services-node-2:
+    build:
+      context: .
+      dockerfile: Node2.Dockerfile
+    container_name: JobFinderApiNode2
+    image: job-finder-api-image-node-2
+    depends_on:
+    - postgres 
+    - online-job-services-node-1
+    hostname: api.onlinejob.com
+    restart: always
+    ports:
+    - 5002:5002
+    healthcheck:
+      test: exit 0
+  nginx-load-balancing-api:
+    build:
+      context: .
+      dockerfile: Nginx.API.Dockerfile
+    container_name: NginxLoadBalancingApi
+    ports:
+    - 80:80
+    depends_on:
+    - online-job-services-node-1
+    - online-job-services-node-2

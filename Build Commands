@@ -1,0 +1,4 @@
+./gradlew build 
+java -jar build/libs/app.jar
+
+java -jar build/libs/app.jar

@@ -1,0 +1,7 @@
+docker build -t com.miu.onlinejob .
+
+docker run  --name OnlineJobApi --hostname api.jobfinder.com -p 80:80 com.miu.onlinejob
+
+// for docker compose 
+
+ docker-compose up
