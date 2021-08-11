@@ -64,7 +64,7 @@ public class VacancyController {
 
 
     @PutMapping("/{id}")
-   // @PreAuthorize("hasRole('COMPANY')")
+    @PreAuthorize("hasRole('COMPANY')")
     public Vacancy updateVacancy(@PathVariable Long id,@RequestBody VacancyRequest vacancyRequest, @CurrentUser UserPrincipal currentUser){
 
         Company company = this.companyService.findByUser(currentUser.getId());
@@ -79,5 +79,11 @@ public class VacancyController {
     @PreAuthorize("hasRole('COMPANY')")
     public void deleteVacancy(@PathVariable Long id){
         vacancyService.delete(id);
+    }
+
+
+    @GetMapping("/approved")
+    public List<Vacancy> getApprovedVacancies(){
+        return vacancyService.getAllVacancies();
     }
 }
