@@ -2,6 +2,7 @@ package com.MIU.OnlineJob.Models;
 
 import com.MIU.OnlineJob.Models.enums.Category;
 import com.MIU.OnlineJob.Models.enums.VacancyStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
 import lombok.Data;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "vacancy")
 @Data
+@JsonIgnoreProperties("vacancyApplications")
 public class Vacancy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

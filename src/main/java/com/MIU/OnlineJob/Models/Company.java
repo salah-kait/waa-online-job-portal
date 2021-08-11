@@ -3,13 +3,17 @@ package com.MIU.OnlineJob.Models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "company")
-@JsonIgnoreProperties("user")
+@JsonIgnoreProperties({"user","vacancyList"})
 public class Company {
 
 	@Id
@@ -39,60 +43,6 @@ public class Company {
 		this.user = user;
 	}
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public Long getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(Long zipcode) {
-		this.zipcode = zipcode;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public List<Vacancy> getVacancyList() {
-		return vacancyList;
-	}
-
-	public void setVacancyList(List<Vacancy> vacancyList) {
-		this.vacancyList = vacancyList;
-	}
 
 }
