@@ -1,8 +1,10 @@
 package com.MIU.OnlineJob.Services;
 
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
+import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.JobSeeker;
 import com.MIU.OnlineJob.Models.VacancyApplication;
+import com.MIU.OnlineJob.Models.enums.VacancyStatus;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
 import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Repositories.VacancyApplicationRepository;
@@ -73,7 +75,6 @@ public class VacancyService {
 
 
     public void apply(Long vacancyId,Long userId){
-
         JobSeeker jobSeeker = jobSeekerService.findByUserId(userId);
         Vacancy vacancy = this.findById(vacancyId);
         Optional<VacancyApplication> vao = this.vacancyApplicationRepository.findByVacancyAndJobSeeker(vacancy,jobSeeker);
@@ -85,7 +86,13 @@ public class VacancyService {
             vacancyApplication.setVacancy(vacancy);
             this.vacancyApplicationRepository.save(vacancyApplication);
         }
+    }
 
+    public List<Vacancy> getCompanyVacancies(Company company) {
+        return vacancyRepository.findAllByCompany(company);
+    }
 
+    public List<Vacancy> getVacanciesByStatus(VacancyStatus vacancyStatus) {
+        return vacancyRepository.findAllByVacancyStatus(vacancyStatus);
     }
 }

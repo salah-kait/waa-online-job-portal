@@ -45,14 +45,6 @@ public class Vacancy {
         this.postToDate = LocalDateTime.now().withMonth(month).toLocalDate();
     }
 
-    public VacancyStatus getVacancyStatus() {
-        return vacancyStatus;
-    }
-
-    public void setVacancyStatus(VacancyStatus vacancyStatus) {
-        this.vacancyStatus = vacancyStatus;
-    }
-
     @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "vacancy")
     private List<VacancyApplication> vacancyApplications;
 

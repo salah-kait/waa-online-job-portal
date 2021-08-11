@@ -6,6 +6,8 @@ import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.Skill;
 import com.MIU.OnlineJob.Models.Vacancy;
+import com.MIU.OnlineJob.Models.enums.VacancyStatus;
+import com.MIU.OnlineJob.Payload.Requests.ChangeVacancyStatusRequest;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
 import com.MIU.OnlineJob.Payload.Response.ApiResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
@@ -37,13 +39,16 @@ public class VacancyController {
 
     @GetMapping("/")
     @PreAuthorize("hasRole('COMPANY')")
-    public List<Vacancy> getVacancies(){
-        return vacancyService.getAllVacancies();
+    public List<Vacancy> getVacancies(@CurrentUser UserPrincipal currentUse){
+        Company company = this.companyService.findByUser(currentUse.getId());
+        if (company == null){
+            throw new AppException("Do not have a company");
+        }
+        return vacancyService.getCompanyVacancies(company);
     }
 
     @PreAuthorize("hasRole('COMPANY')")
     public Vacancy saveVacancy(@RequestBody VacancyRequest vacancyRequest, @CurrentUser UserPrincipal currentUser){
-
         Company company = this.companyService.findByUser(currentUser.getId());
         if (company == null){
             throw new AppException("Cannot post vaccancy against");
@@ -86,11 +91,9 @@ public class VacancyController {
 
 
     @GetMapping("/approved")
-    //todo filter approved jobs by admin
     public List<Vacancy> getApprovedVacancies(){
-        return vacancyService.getAllVacancies();
+        return vacancyService.getVacanciesByStatus(VacancyStatus.Published);
     }
-
 
     @PostMapping("/apply/{id}")
     @PreAuthorize("hasRole('JOBSEEKER')")
@@ -106,5 +109,28 @@ public class VacancyController {
             return new ResponseEntity(new ApiResponse(false, e.getMessage()),
                     HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PutMapping("/change-status/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiResponse> approve(@PathVariable Long id, @RequestBody ChangeVacancyStatusRequest changeStatusRequest, @CurrentUser UserPrincipal currentUser){
+        try{
+            Vacancy vacancy = this.vacancyService.findById(id);
+            vacancy.setVacancyStatus(changeStatusRequest.getStatus().toLowerCase().equals("Published")?VacancyStatus.Published:VacancyStatus.Canceled);
+            this.vacancyService.save(vacancy);
+            return new ResponseEntity<>(
+                    new ApiResponse(true, "Vacancy Status Updates successfully"),
+                    HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity(new ApiResponse(false, e.getMessage()),
+                    HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/pending-approval/")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<Vacancy>  pendingApproval(){
+        return vacancyService.getVacanciesByStatus(VacancyStatus.Draft);
     }
 }
