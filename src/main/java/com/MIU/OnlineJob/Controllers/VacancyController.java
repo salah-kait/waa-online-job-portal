@@ -47,6 +47,8 @@ public class VacancyController {
         return vacancyService.getCompanyVacancies(company);
     }
 
+
+    @PostMapping
     @PreAuthorize("hasRole('COMPANY')")
     public Vacancy saveVacancy(@RequestBody VacancyRequest vacancyRequest, @CurrentUser UserPrincipal currentUser){
         Company company = this.companyService.findByUser(currentUser.getId());
