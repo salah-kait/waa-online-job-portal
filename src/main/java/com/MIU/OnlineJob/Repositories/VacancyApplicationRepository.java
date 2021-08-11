@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface VacancyApplicationRepository extends JpaRepository<VacancyApplication, Long> {
     Optional<VacancyApplication> findByVacancyAndJobSeeker(Vacancy vacancy, JobSeeker jobSeeker);
+    Long countByVacancy(Vacancy vacancy);
 
 }

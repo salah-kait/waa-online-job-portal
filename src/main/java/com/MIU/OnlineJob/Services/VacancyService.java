@@ -40,16 +40,28 @@ public class VacancyService {
         return vacancyRepository.save(vacancy);
     }
 
-    public void delete(Long id) {
-        vacancyRepository.deleteById(id);
+    public void delete(Long id,Company company) {
+        Optional<Vacancy> vacancyOp = vacancyRepository.findByCompanyAndId(company,id);
+        if(vacancyOp.isPresent()){
+            Vacancy vacancy = vacancyOp.get();
+            Long applicationCant = vacancyApplicationRepository.countByVacancy(vacancy);
+            if(applicationCant == 0){
+                vacancyRepository.deleteById(id);
+            }else{
+                throw new AppException("Can not delete Vacancy has applications")  ;
+            }
+        }else{
+            throw new ResourceNotFoundException("Vacancy", "id", id);
+        }
+
     }
 
     public List<Vacancy> getAllVacancies() {
         return vacancyRepository.findAll();
     }
 
-    public Vacancy update(VacancyRequest vacancyRequest, Long id) {
-        Optional<Vacancy> vacancy = vacancyRepository.findById(id);
+    public Vacancy update(VacancyRequest vacancyRequest, Long id,Company company) {
+        Optional<Vacancy> vacancy = vacancyRepository.findByCompanyAndId(company,id);
         if(vacancy.isPresent()){
             Vacancy vacancy1 = vacancy.get();
             vacancy1.setJobDescription(vacancyRequest.getJobDescription());

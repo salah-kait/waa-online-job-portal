@@ -80,15 +80,28 @@ public class VacancyController {
         if (company == null){
             throw new AppException("Cannot post vaccancy against");
         }
-        return vacancyService.update(vacancyRequest,id);
+        return vacancyService.update(vacancyRequest,id,company);
     }
 
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('COMPANY')")
-    //todo disable this action if it has applications
-    public void deleteVacancy(@PathVariable Long id){
-        vacancyService.delete(id);
+    public ResponseEntity<ApiResponse> deleteVacancy(@PathVariable Long id, @CurrentUser UserPrincipal currentUser){
+        try{
+
+            Company company = this.companyService.findByUser(currentUser.getId());
+            if (company == null){
+                throw new AppException("Cannot post vacancy against");
+            }
+
+            vacancyService.delete(id,company);
+            return new ResponseEntity<>(
+                    new ApiResponse(true, "Vacancy Deleted successfully"),
+                    HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(new ApiResponse(false, e.getMessage()),
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
 

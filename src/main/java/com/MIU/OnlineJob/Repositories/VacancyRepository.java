@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
@@ -16,5 +17,6 @@ public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
     List<Vacancy> search(@Param("term") String term);
     List<Vacancy> findAllByVacancyStatus(VacancyStatus vacancyStatus);
     List<Vacancy> findAllByCompany(Company company);
+    Optional<Vacancy> findByCompanyAndId(Company company,Long id);
 
 }

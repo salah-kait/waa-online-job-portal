@@ -37,3 +37,9 @@ VALUES
 	(5, 'operating our autonomous vehicles on public roads to enable Argo to continue its testing, monitoring, and development of its Autonomous Vehicle System (AVS). Prior to getting behind the wheel, all AVSTSs undergo a rigorous training program which, among other things, teaches them about the underlying technolo', 'Fairfield, Iowa', '2021-05-01', '2022-05-01', 50, 150, 'Delivery Specialist', 1, 1),
 	(6, 'operating our autonomous vehicles on public roads to enable Argo to continue its testing, monitoring, and development of its Autonomous Vehicle System (AVS). Prior to getting behind the wheel, all AVSTSs undergo a rigorous training program which, among other things, teaches them about the underlying technolo', 'Fairfield, Iowa', '2021-05-01', '2022-05-01', 50, 150, 'Program Specialist - Fairfield', 0, 1),
 	(7, 'operating our autonomous vehicles on public roads to enable Argo to continue its testing, monitoring, and development of its Autonomous Vehicle System (AVS). Prior to getting behind the wheel, all AVSTSs undergo a rigorous training program which, among other things, teaches them about the underlying technolo', 'Austin, TX', '2021-05-01', '2022-05-01', 50, 150, 'Java Software Engineer II', 0, 1);
+
+
+
+INSERT INTO `vacancy_application` (`id`, `apply_date`, `category`, `company_rating`, `job_seeker_id`, `vacancy_id`)
+VALUES
+	(1, '2021-08-11', 0, 5, 1, 1);
