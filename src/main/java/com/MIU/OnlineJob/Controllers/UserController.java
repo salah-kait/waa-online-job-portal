@@ -72,7 +72,7 @@ public class UserController {
 
     @GetMapping("/me")
     public UserSummaryResponse getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummaryResponse userSummary = new UserSummaryResponse(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
+        UserSummaryResponse userSummary = new UserSummaryResponse(currentUser.getId(), currentUser.getUsername(), currentUser.getName(),currentUser.getRole());
         return userSummary;
     }
 }

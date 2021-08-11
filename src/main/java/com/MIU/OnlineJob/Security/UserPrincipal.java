@@ -1,7 +1,9 @@
 package com.MIU.OnlineJob.Security;
 
 import com.MIU.OnlineJob.Models.User;
+import com.MIU.OnlineJob.Models.enums.RoleName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Getter
 public class UserPrincipal implements UserDetails {
     private Long id;
 
@@ -24,15 +27,18 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private String password;
 
+    private RoleName role;
+
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities) {
+    public UserPrincipal(Long id, String name, String username, String email, String password, Collection<? extends GrantedAuthority> authorities,RoleName rolename) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+        this.role = rolename;
     }
 
     public static UserPrincipal create(User user) {
@@ -46,7 +52,8 @@ public class UserPrincipal implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                (user.getRoles().iterator().next()).getName()
         );
     }
 

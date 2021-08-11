@@ -14,6 +14,7 @@ import com.MIU.OnlineJob.Payload.Requests.SignUpRequest;
 import com.MIU.OnlineJob.Repositories.RoleRepository;
 import com.MIU.OnlineJob.Repositories.UserRepository;
 import com.MIU.OnlineJob.Security.JwtTokenProvider;
+import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.CompanyService;
 import com.MIU.OnlineJob.Services.JobSeekerService;
 import com.MIU.OnlineJob.Services.Notifiers.NotificationServiceFactory;
@@ -77,7 +78,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt,(UserPrincipal)authentication.getPrincipal()));
     }
 
     @PostMapping("/signup")
