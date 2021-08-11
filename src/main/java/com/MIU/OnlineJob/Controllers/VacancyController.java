@@ -118,7 +118,7 @@ public class VacancyController {
     public ResponseEntity<ApiResponse> approve(@PathVariable Long id, @RequestBody ChangeVacancyStatusRequest changeStatusRequest, @CurrentUser UserPrincipal currentUser){
         try{
             Vacancy vacancy = this.vacancyService.findById(id);
-            vacancy.setVacancyStatus(changeStatusRequest.getStatus().toLowerCase().equals("Published")?VacancyStatus.Published:VacancyStatus.Canceled);
+            vacancy.setVacancyStatus(changeStatusRequest.getStatus().toLowerCase().equals("published")?VacancyStatus.Published:VacancyStatus.Canceled);
             this.vacancyService.save(vacancy);
             return new ResponseEntity<>(
                     new ApiResponse(true, "Vacancy Status Updates successfully"),

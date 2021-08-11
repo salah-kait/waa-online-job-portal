@@ -13,6 +13,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'io.jsonwebtoken:jjwt:0.9.0'
@@ -33,6 +34,7 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 test {
