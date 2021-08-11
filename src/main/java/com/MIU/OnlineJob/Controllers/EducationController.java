@@ -35,7 +35,7 @@ public class EducationController {
         return this.educationService.findAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     Education newEducation(@RequestBody Education newEducation,@CurrentUser UserPrincipal currentUser) {
 
         JobSeeker js = jobSeekerService.findByUserId(currentUser.getId());

@@ -48,3 +48,22 @@ VALUES
 INSERT INTO `vacancy_application` (`id`, `apply_date`, `category`, `company_rating`, `job_seeker_id`, `vacancy_id`)
 VALUES
 	(1, '2021-08-11', 0, 5, 1, 1);
+
+
+INSERT INTO `skills` (`id`, `name`)
+VALUES
+	(1, 'coding');
+
+
+INSERT INTO `work_experiences` (`id`, `company_name`, `from_date`, `last_salary`, `position`, `to_date`, `job_seeker_id`)
+VALUES
+	(1, 'coding', '2020-01-09 18:00:00.000000', 200, 'position', '2022-03-01 18:00:00.000000', 1);
+
+INSERT INTO `educations` (`id`, `degree`, `from_date`, `gpa`, `to_date`, `job_seeker_id`)
+VALUES
+	(1, 'Bachler in SE', '2020-01-02', 2, '2022-02-02', 1);
+
+
+INSERT INTO `certificates` (`id`, `expiration_date`, `issue_date`, `issued_by`, `name`, `serial_number`, `job_seeker_id`)
+VALUES
+	(1, '2022-02-01', '2020-02-01', 'Nejed', 'First Certificate', 123, 1);

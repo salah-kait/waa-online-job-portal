@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "jobSeekerSkills")
+@JsonIgnoreProperties("jobSeeker")
 public class JobSeekerSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

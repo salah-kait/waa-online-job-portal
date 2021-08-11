@@ -1,5 +1,6 @@
 package com.MIU.OnlineJob.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "job_seekers")
+@JsonIgnoreProperties({"vacancyApplications"})
 public class JobSeeker extends AbstractUserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

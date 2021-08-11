@@ -35,7 +35,7 @@ public class CertificateController {
         return this.certificateService.findAll();
     }
 
-    @PostMapping("/new")
+    @PostMapping("/")
     Certificate newCertificate(@RequestBody Certificate newCertificate, @CurrentUser UserPrincipal currentUser) {
         JobSeeker js = jobSeekerService.findByUserId(currentUser.getId());
         newCertificate.setJobSeeker(js);
