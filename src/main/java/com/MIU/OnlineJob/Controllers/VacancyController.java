@@ -7,12 +7,15 @@ import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.Skill;
 import com.MIU.OnlineJob.Models.Vacancy;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
+import com.MIU.OnlineJob.Payload.Response.ApiResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
 import com.MIU.OnlineJob.Services.CompanyService;
 import com.MIU.OnlineJob.Services.UserService;
 import com.MIU.OnlineJob.Services.VacancyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +41,6 @@ public class VacancyController {
         return vacancyService.getAllVacancies();
     }
 
-    @PostMapping
     @PreAuthorize("hasRole('COMPANY')")
     public Vacancy saveVacancy(@RequestBody VacancyRequest vacancyRequest, @CurrentUser UserPrincipal currentUser){
 
@@ -77,13 +79,32 @@ public class VacancyController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('COMPANY')")
+    //todo disable this action if it has applications
     public void deleteVacancy(@PathVariable Long id){
         vacancyService.delete(id);
     }
 
 
     @GetMapping("/approved")
+    //todo filter approved jobs by admin
     public List<Vacancy> getApprovedVacancies(){
         return vacancyService.getAllVacancies();
+    }
+
+
+    @PostMapping("/apply/{id}")
+    @PreAuthorize("hasRole('JOBSEEKER')")
+    public ResponseEntity<ApiResponse> apply(@PathVariable Long id, @CurrentUser UserPrincipal currentUser){
+        try{
+            this.vacancyService.apply(id,currentUser.getId());
+
+            return new ResponseEntity<>(
+                    new ApiResponse(true, "Application Submitted successfully"),
+                    HttpStatus.OK);
+
+        }catch (Exception e){
+            return new ResponseEntity(new ApiResponse(false, e.getMessage()),
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 }

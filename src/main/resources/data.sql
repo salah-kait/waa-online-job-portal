@@ -6,15 +6,23 @@ VALUES
 
 INSERT INTO `users` (`id`, `email`, `name`, `password`, `username`, `company_id`, `job_seeker_id`)
 VALUES
-	(1,'salah.khudairat@gmail.com','company','$2a$10$jxtdpUz2cEQDMqPtwpl.V.cDxaLypGXO8z7ZCLd8ui3Ay1v..jojm','company',NULL,NULL);
+	(1, 'salah.khudairat@gmail.com', 'company', '$2a$10$jxtdpUz2cEQDMqPtwpl.V.cDxaLypGXO8z7ZCLd8ui3Ay1v..jojm', 'company', NULL, NULL),
+	(2, 'salah.khudairat+1@gmail.com', 'jobseeker', '$2a$10$iLXCbP.gdned.YHZbJ4sFOi1T/4u0qZ7NEVT1rQhDxXkhrJBNQRsS', 'jobseeker', NULL, NULL);
+
 
 INSERT INTO `user_roles` (`user_id`, `role_id`)
 VALUES
-	(1,2);
+	(1, 2),
+	(2, 3);
+
 
 INSERT INTO `company` (`id`, `city`, `state`, `street`, `zipcode`, `user_id`)
 VALUES
 	(1, 'Fairfield', 'IA', '607 W Broadway', 52556, 1);
+
+INSERT INTO `job_seekers` (`id`, `bio`, `country`, `current_position`, `is_remotely`, `user_id`)
+VALUES
+	(1, 'First Job Seeker', 'Tanzania, United Republic of', 'Software Engineer', 0, 2);
 
 
 	INSERT INTO `vacancy` (`id`, `job_description`, `location`, `post_from_date`, `post_to_date`, `salary_rang_from`, `salary_rang_to`, `title`, `vacancy_status`, `company_id`)

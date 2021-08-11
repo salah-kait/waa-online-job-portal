@@ -37,7 +37,7 @@ public class JobSeeker extends AbstractUserProfile {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "jobSeeker")
     private List<VacancyApplication> vacancyApplications;
 
     private String country;

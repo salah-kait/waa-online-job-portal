@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobSeekerService {
@@ -50,7 +51,11 @@ public class JobSeekerService {
     }
 
     public JobSeeker findByUserId(Long userId) {
-        return this._JobSeekerRepository.findJobSeekerByUserId(userId);
+        Optional<JobSeeker> jobSeeker = this._JobSeekerRepository.findJobSeekerByUserId(userId);
+        if(jobSeeker.isPresent()){
+            return jobSeeker.get();
+        }
+        throw new ResourceNotFoundException(JobSeeker.class.toString(),"user_id",userId);
     }
 
     public void delete(long id) {

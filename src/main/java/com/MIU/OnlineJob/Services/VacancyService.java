@@ -1,7 +1,11 @@
 package com.MIU.OnlineJob.Services;
 
 import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
+import com.MIU.OnlineJob.Models.JobSeeker;
+import com.MIU.OnlineJob.Models.VacancyApplication;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
+import com.MIU.OnlineJob.Repositories.UserRepository;
+import com.MIU.OnlineJob.Repositories.VacancyApplicationRepository;
 import com.MIU.OnlineJob.Repositories.VacancyRepository;
 import com.MIU.OnlineJob.Exception.AppException;
 import com.MIU.OnlineJob.Models.Vacancy;
@@ -15,10 +19,15 @@ import java.util.Optional;
 public class VacancyService {
 
     VacancyRepository vacancyRepository;
+    VacancyApplicationRepository vacancyApplicationRepository;
 
     @Autowired
-    public VacancyService(VacancyRepository vacancyRepository) {
+    JobSeekerService jobSeekerService;
+
+    @Autowired
+    public VacancyService(VacancyRepository vacancyRepository,VacancyApplicationRepository vacancyApplicationRepository) {
         this.vacancyRepository = vacancyRepository;
+        this.vacancyApplicationRepository = vacancyApplicationRepository;
     }
 
     public Vacancy getVacancy(Long id) {
@@ -52,5 +61,31 @@ public class VacancyService {
         }else{
             throw new ResourceNotFoundException("Vacancy", "id", id);
         }
+    }
+
+    public Vacancy findById(Long id) {
+        Optional<Vacancy> vacancy = this.vacancyRepository.findById(id);
+        if(vacancy.isPresent()){
+            return vacancy.get();
+        }
+        throw new ResourceNotFoundException(Vacancy.class.toString(),"id",id);
+    }
+
+
+    public void apply(Long vacancyId,Long userId){
+
+        JobSeeker jobSeeker = jobSeekerService.findByUserId(userId);
+        Vacancy vacancy = this.findById(vacancyId);
+        Optional<VacancyApplication> vao = this.vacancyApplicationRepository.findByVacancyAndJobSeeker(vacancy,jobSeeker);
+        if(vao.isPresent()){
+            throw new AppException("Already applied");
+        }else{
+            VacancyApplication vacancyApplication = new VacancyApplication();
+            vacancyApplication.setJobSeeker(jobSeeker);
+            vacancyApplication.setVacancy(vacancy);
+            this.vacancyApplicationRepository.save(vacancyApplication);
+        }
+
+
     }
 }

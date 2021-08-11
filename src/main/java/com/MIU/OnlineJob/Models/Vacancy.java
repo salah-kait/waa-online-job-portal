@@ -4,12 +4,16 @@ import com.MIU.OnlineJob.Models.enums.Category;
 import com.MIU.OnlineJob.Models.enums.VacancyStatus;
 import com.github.javafaker.Faker;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "vacancy")
 @Data
@@ -49,16 +53,9 @@ public class Vacancy {
         this.vacancyStatus = vacancyStatus;
     }
 
-    @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "vacancy")
     private List<VacancyApplication> vacancyApplications;
 
-    public void setVacancyApplications(List<VacancyApplication> vacancyApplications) {
-        this.vacancyApplications =vacancyApplications;
-    }
-
-    public List<VacancyApplication> getVacancyApplications() {
-        return this.vacancyApplications;
-    }
 
     @ManyToOne
     private Company company;
@@ -67,68 +64,4 @@ public class Vacancy {
         throw new UnsupportedOperationException();
     }
 
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getJobDescription() {
-        return jobDescription;
-    }
-
-    public void setJobDescription(String jobdescription) {
-        this.jobDescription = jobdescription;
-    }
-
-    public LocalDate getPostFromDate() {
-        return postFromDate;
-    }
-
-    public void setPostFromDate(LocalDate postFromDate) {
-        this.postFromDate = postFromDate;
-    }
-
-    public LocalDate getPostToDate() {
-        return postToDate;
-    }
-
-    public void setPostToDate(LocalDate postToDate) {
-        this.postToDate = postToDate;
-    }
-
-    public double getSalaryRangFrom() {
-        return salaryRangFrom;
-    }
-
-    public void setSalaryRangFrom(double salaryRangFrom) {
-        this.salaryRangFrom = salaryRangFrom;
-    }
-
-    public double getSalaryRangTo() {
-        return salaryRangTo;
-    }
-
-    public void setSalaryRangTo(double salaryRangTo) {
-        this.salaryRangTo = salaryRangTo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
 }

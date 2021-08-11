@@ -100,8 +100,6 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         RoleName userRoleName = Objects.equals(signUpRequest.getRole(), "company") ?RoleName.ROLE_COMPANY:RoleName.ROLE_JOBSEEKER;
-        System.out.println("==========");
-        System.out.println(userRoleName);
         Role userRole = roleRepository.findByName(userRoleName)
                 .orElseThrow(() -> new AppException("User Role not set."+signUpRequest.getRole()));
 
@@ -117,8 +115,8 @@ public class AuthController {
             companyService.save(comp);
         }else if(userRoleName == RoleName.ROLE_JOBSEEKER){
             JobSeeker js = new JobSeeker();
-            js.setBio("First Job Seeker");
-            js.setCurrentPosition("Software Engineer");
+            //js.setBio("First Job Seeker");
+            //js.setCurrentPosition("Software Engineer");
             js.setUser(result);
             jobSeekerService.save(js);
         }
