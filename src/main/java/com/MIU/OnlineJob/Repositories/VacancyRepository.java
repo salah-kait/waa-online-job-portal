@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
-    @Query("SELECT v FROM Vacancy v WHERE v.title LIKE %:term% or  v.jobDescription like %:term%")
+    @Query("SELECT v FROM Vacancy v WHERE (v.title LIKE %:term% or  v.jobDescription like %:term%) and v.vacancyStatus = 1")
     List<Vacancy> search(@Param("term") String term);
     List<Vacancy> findAllByVacancyStatus(VacancyStatus vacancyStatus);
     List<Vacancy> findAllByCompany(Company company);

@@ -6,6 +6,7 @@ import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
 import com.MIU.OnlineJob.Models.Company;
 import com.MIU.OnlineJob.Models.Skill;
 import com.MIU.OnlineJob.Models.Vacancy;
+import com.MIU.OnlineJob.Models.VacancyApplication;
 import com.MIU.OnlineJob.Models.enums.VacancyStatus;
 import com.MIU.OnlineJob.Payload.Requests.ChangeVacancyStatusRequest;
 import com.MIU.OnlineJob.Payload.Requests.VacancyRequest;
@@ -21,6 +22,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,6 +37,24 @@ public class VacancyController {
     @GetMapping("/{id}")
     public Vacancy getVacancy(@PathVariable Long id){
         return vacancyService.getVacancy(id);
+    }
+
+
+    @GetMapping("/applications/{id}")
+    @PreAuthorize("hasRole('COMPANY')")
+    public List<VacancyApplication> getVacancyApplications(@PathVariable Long id){
+
+        List<VacancyApplication> r = new ArrayList<>();
+        for(VacancyApplication model :vacancyService.getVacancyApplications(id)){
+            r.add(model);
+                System.out.println(model.getJobSeeker().getUser().getEmail());
+        }
+
+        return r;
+
+
+        //return new ArrayList<VacancyApplication>();
+       //return vacancyService.getVacancyApplications(id);
     }
 
     @GetMapping("/")

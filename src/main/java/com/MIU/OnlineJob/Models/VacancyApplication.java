@@ -1,7 +1,9 @@
 package com.MIU.OnlineJob.Models;
 
 import com.MIU.OnlineJob.Models.enums.Category;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,13 +14,12 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Entity
 public class VacancyApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
-
-    @CreatedDate
     private LocalDate applyDate;
 
     @Max(value = 10)

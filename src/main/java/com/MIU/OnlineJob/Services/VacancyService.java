@@ -107,4 +107,9 @@ public class VacancyService {
     public List<Vacancy> getVacanciesByStatus(VacancyStatus vacancyStatus) {
         return vacancyRepository.findAllByVacancyStatus(vacancyStatus);
     }
+
+    public List<VacancyApplication> getVacancyApplications(Long id) {
+        Vacancy vacancy = this.findById(id);
+        return vacancyApplicationRepository.findAllByVacancy(vacancy);
+    }
 }

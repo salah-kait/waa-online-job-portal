@@ -2,6 +2,8 @@ package com.MIU.OnlineJob.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.javafaker.Faker;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +13,8 @@ import java.util.List;
 @Entity
 @Table(name = "job_seekers")
 @JsonIgnoreProperties({"vacancyApplications"})
+@Getter
+@Setter
 public class JobSeeker extends AbstractUserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +38,6 @@ public class JobSeeker extends AbstractUserProfile {
     @OneToMany(mappedBy = "jobSeeker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Education> educations;
 
-
     @OneToOne()
     @JoinColumn(name = "user_id")
     private User user;
@@ -57,12 +60,6 @@ public class JobSeeker extends AbstractUserProfile {
         return isRemotely;
     }
 
-    public void setRemotely(boolean remotely) {
-        isRemotely = remotely;
-    }
-
-
-
     public JobSeeker() {
         Faker faker = new Faker();
         this.currentPosition = faker.job().position();
@@ -71,89 +68,17 @@ public class JobSeeker extends AbstractUserProfile {
         this.workExperiences=new ArrayList<WorkExperience>();
     }
 
-    public List<JobSeekerSkill> getJobSeekerSkills() {
-        return jobSeekerSkills;
-    }
-
-    public void setJobSeekerSkills(List<JobSeekerSkill> jobSeekerSkills) {
-        this.jobSeekerSkills = jobSeekerSkills;
-    }
-
-    public List<WorkExperience> getWorkExperiences() {
-        return workExperiences;
-    }
-
-    public void setWorkExperiences(List<WorkExperience> workExperiences) {
-        this.workExperiences = workExperiences;
-    }
-
-    public List<Certificate> getCertificates() {
-        return certificates;
-    }
-
-    public void setCertificates(List<Certificate> certificates) {
-        this.certificates = certificates;
-    }
-
-    public List<Education> getEducations() {
-        return educations;
-    }
-
-    public void setEducations(List<Education> educations) {
-        this.educations = educations;
-    }
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setCurrentPosition(String currentPosition) {
-        this.currentPosition = currentPosition;
-    }
-
-    public String getCurrentPosition() {
-        return currentPosition;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-    public User getUser() {
-        return this.user ;
-    }
-
-    public List<VacancyApplication> getVacancyApplications() {
-        return vacancyApplications;
-    }
-
-    public void setVacancyApplications(List<VacancyApplication> vacancyApplications) {
-        this.vacancyApplications = vacancyApplications;
-    }
-
-    @Override
-    public String toString() {
-        return "JobSeeker{" +
-                "id=" + id +
-                ", currentPosition='" + currentPosition + '\'' +
-                ", bio='" + bio + '\'' +
-                ", jobSeekerSkills=" + jobSeekerSkills +
-                ", workExperiences=" + workExperiences +
-                ", certificates=" + certificates +
-                ", educations=" + educations +
-                ", user=" + user +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "JobSeeker{" +
+//                "id=" + id +
+//                ", currentPosition='" + currentPosition + '\'' +
+//                ", bio='" + bio + '\'' +
+//                ", jobSeekerSkills=" + jobSeekerSkills +
+//                ", workExperiences=" + workExperiences +
+//                ", certificates=" + certificates +
+//                ", educations=" + educations +
+//                ", user=" + user +
+//                '}';
+//    }
 }
