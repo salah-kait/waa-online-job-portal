@@ -76,7 +76,6 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    @PreAuthorize("hasRole('JOBSEEKER')")
     public UserSummaryResponse getCurrentUser(@CurrentUser UserPrincipal currentUser) {
         JobSeeker js = null;
         try{
