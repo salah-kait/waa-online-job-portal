@@ -27,7 +27,7 @@ public class JobSeeker extends AbstractUserProfile {
     private String bio;
 
     @OneToMany(mappedBy = "jobSeeker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<JobSeekerSkill> jobSeekerSkills;
+    private List<Skill> jobSeekerSkills;
 
     @OneToMany(mappedBy = "jobSeeker", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<WorkExperience> workExperiences;

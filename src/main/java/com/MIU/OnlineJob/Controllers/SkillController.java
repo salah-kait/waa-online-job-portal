@@ -39,7 +39,7 @@ public class SkillController {
     Skill newSkill(@RequestBody Skill newSkill,@CurrentUser UserPrincipal currentUser) {
 
         JobSeeker js = jobSeekerService.findByUserId(currentUser.getId());
-        //newSkill.setJobSeeker(js);
+        newSkill.setJobSeeker(js);
         return this.skillService.save(newSkill);
     }
 

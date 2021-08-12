@@ -50,9 +50,9 @@ VALUES
 	(1, '2021-08-11', 0, 5, 1, 1);
 
 
-INSERT INTO `skills` (`id`, `name`)
+INSERT INTO `skills` (`id`, `name`, `job_seeker_id`)
 VALUES
-	(1, 'coding');
+	(1, 'coding', 1);
 
 
 INSERT INTO `work_experiences` (`id`, `company_name`, `from_date`, `last_salary`, `position`, `to_date`, `job_seeker_id`)

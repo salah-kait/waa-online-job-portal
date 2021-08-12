@@ -1,6 +1,8 @@
 package com.MIU.OnlineJob.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "skills")
 @JsonIgnoreProperties("jobSeeker")
+@Getter
+@Setter
 public class Skill {
 
 	@Id
@@ -16,36 +20,8 @@ public class Skill {
 	@NotBlank(message = "Name is required")
 	private String name;
 
-	public Skill(long id, String name) {
-		this.id = id;
-		this.name = name;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "job_seeker_id", referencedColumnName = "id", nullable = false)
+	private JobSeeker jobSeeker;
 
-	public Skill() {
-
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "Skill{" +
-				"id=" + id +
-				", name='" + name + '\'' +
-				'}';
-	}
 }
