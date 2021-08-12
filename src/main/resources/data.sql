@@ -64,6 +64,6 @@ VALUES
 	(1, 'Bachler in SE', '2020-01-02', 2, '2022-02-02', 1);
 
 
-INSERT INTO `certificates` (`id`, `expiration_date`, `issue_date`, `issued_by`, `name`, `serial_number`, `job_seeker_id`)
+INSERT INTO `certificates` (`id`, `expiration_date`, `issue_date`, `issued_by`, `name`, `job_seeker_id`)
 VALUES
-	(1, '2022-02-01', '2020-02-01', 'Nejed', 'First Certificate', 123, 1);
+	(1, '2022-02-01', '2020-02-01', 'PHP', 'First Certificate', 1);

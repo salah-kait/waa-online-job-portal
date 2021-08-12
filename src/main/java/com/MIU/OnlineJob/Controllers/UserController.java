@@ -1,5 +1,7 @@
 package com.MIU.OnlineJob.Controllers;
 
+import com.MIU.OnlineJob.Exception.ResourceNotFoundException;
+import com.MIU.OnlineJob.Models.JobSeeker;
 import com.MIU.OnlineJob.Models.Role;
 import com.MIU.OnlineJob.Models.User;
 import com.MIU.OnlineJob.Models.enums.RoleName;
@@ -8,6 +10,7 @@ import com.MIU.OnlineJob.Payload.Requests.CreateUserRequest;
 import com.MIU.OnlineJob.Payload.Response.UserSummaryResponse;
 import com.MIU.OnlineJob.Security.CurrentUser;
 import com.MIU.OnlineJob.Security.UserPrincipal;
+import com.MIU.OnlineJob.Services.JobSeekerService;
 import com.MIU.OnlineJob.Services.RoleService;
 import com.MIU.OnlineJob.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +33,14 @@ public class UserController {
 
     private RoleService roleService;
     private UserService userService;
+    private JobSeekerService jobSeekerService;
 
     @Autowired
-    public UserController(UserService userService, PasswordEncoder passwordEncoder, RoleService roleService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder, RoleService roleService,JobSeekerService jobSeekerService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.roleService = roleService;
+        this.jobSeekerService = jobSeekerService;
     }
 
     @PostMapping("create-admin")
@@ -71,8 +76,15 @@ public class UserController {
     }
 
     @GetMapping("/me")
+    @PreAuthorize("hasRole('JOBSEEKER')")
     public UserSummaryResponse getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserSummaryResponse userSummary = new UserSummaryResponse(currentUser.getId(), currentUser.getUsername(), currentUser.getName(),currentUser.getRole());
+        JobSeeker js = null;
+        try{
+            js = jobSeekerService.findByUserId(currentUser.getId());
+        }catch (ResourceNotFoundException e){
+
+        }
+        UserSummaryResponse userSummary = new UserSummaryResponse(currentUser.getId(), currentUser.getUsername(), currentUser.getName(),currentUser.getRole(),  js);
         return userSummary;
     }
 }

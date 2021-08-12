@@ -26,9 +26,6 @@ public class Certificate {
     @NotBlank(message = "Name is required")
     private String name;
 
-    @Positive
-    private int serialNumber;
-
     @NotBlank(message = "Issued By is required")
     private String issuedBy;
 
@@ -45,7 +42,6 @@ public class Certificate {
     public Certificate() {
         Faker faker = new Faker();
         this.name = faker.name().title();
-        this.serialNumber = faker.number().numberBetween(1, 100000);
     }
 
 }

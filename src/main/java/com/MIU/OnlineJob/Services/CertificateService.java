@@ -30,7 +30,6 @@ public class CertificateService {
         return certificateRepository
                 .findById(id)
                 .map(certificate -> {
-                    certificate.setSerialNumber(newCertificate.getSerialNumber());
                     certificate.setExpirationDate(newCertificate.getExpirationDate());
                     certificate.setIssueDate(newCertificate.getIssueDate());
                     certificate.setIssuedBy(newCertificate.getIssuedBy());
